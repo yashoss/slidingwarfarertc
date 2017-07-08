@@ -7,12 +7,12 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 
-const server = express();
+const app = express();
 
-// server.use(express.static(__dirname));
-server.use(express.static(path.join(__dirname, 'lib')));
-server.use('/assets', express.static(path.join(__dirname, 'assets')));
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+app.use(express.static(path.join(__dirname, 'lib')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+let server = app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
 
